@@ -1,6 +1,7 @@
 import React from 'react';
+import AddChannel from '../asset/AddChannel';
 
-const TeamChannelList = ({ children, error = false, loading, type }) => {
+const TeamChannelList = ({ setToggleContainer,children, error = false, loading, type, isCreating, setIsCreating, setCreateType, setIsEditing }) => {
     //Type:This prop represents the type of channel list being rendered. It can have a value of either
     // 'team' or 'direct', which determines the title displayed in the header of the channel list
     //error: This prop is a boolean flag indicating whether an error occurred while fetching data or
@@ -38,10 +39,17 @@ const TeamChannelList = ({ children, error = false, loading, type }) => {
         //elements (children) passed to the component.
         <div className='team-channel-list'>
             <div className='team-channel-list__header'>
-                <p className='team-channel-list__header__title'>
+                <p className="team-channel-list__header__title">
                     {type === 'team' ? 'Channels' : 'Direct Messages'}
                 </p>
-//button to add channel//
+                <AddChannel
+                    isCreating={isCreating}
+                    setIsCreating={setIsCreating}
+                    setCreateType={setCreateType}
+                    setIsEditing={setIsEditing}
+                    type={type ==='team' ? 'team' :'messaging'}
+                    setToggleContainer={setToggleContainer}
+                />
             </div>
             {children}
         </div>
